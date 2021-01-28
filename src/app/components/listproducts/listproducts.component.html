@@ -1,0 +1,129 @@
+<div class="content">
+  <h1>Productos de Electrónica</h1>
+  <br>
+  <div class="card col-md-8 pt-5">
+    <div class="row text-center">
+      <div class="container">
+        <button class="btn btn-outline-success" (click)="open(addProd,null,'add')">Agregar</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of listaProductos | async">
+            <th>{{p.id}}</th>
+            <td>{{p.descripcion}}</td>
+            <td>{{p.precio}}</td>
+            <td>
+              <button class="btn btn-outline-primary mr-2" (click)="open(edit,p,'update')">Actualizar</button>
+              <button class="btn btn-outline-danger" (click)="open(delete,p,'delete')">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<ng-template #addProd let-modal>
+  <div class="modal-content">
+    <div class="modal-header bg-indigo">
+      <h3 class="modal-title">Agregar producto</h3>
+      <button type="button" class="close" (click)="modal.dismiss()">
+        X
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-sm-8 col-md-8 col-xl-8">
+        <form>
+          <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <input type="text" class="form-control" [formControl]="descripcionControl" />
+          </div>
+          <div class="form-group">
+            <label for="precio">Precio</label>
+            <input type="number" class="form-control" [formControl]="precioControl" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline-success" (click)="addProduct()">
+        Guardar
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #edit let-modal>
+  <div class="modal-content">
+    <div class="modal-header bg-indigo">
+      <h3 class="modal-title">Actualizar producto</h3>
+      <button type="button" class="close" (click)="modal.dismiss()">
+        X
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-sm-8 col-md-8 col-xl-8">
+        <form>
+          <input type="hidden" [formControl]="idControl" />
+          <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <input type="text" class="form-control" [formControl]="descripcionControl" />
+          </div>
+          <div class="form-group">
+            <label for="precio">Precio</label>
+            <input type="number" class="form-control" [formControl]="precioControl" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline-success" (click)="updateProduct()">
+        Guardar
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #delete let-modal>
+  <div class="modal-content">
+    <div class="modal-header bg-indigo">
+      <h3 class="modal-title">Eliminar producto</h3>
+      <button type="button" class="close" (click)="modal.dismiss()">
+        X
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-sm-8 col-md-8 col-xl-8">
+        <form>
+          <input type="hidden" [formControl]="idControl" readonly />
+          <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <br>
+            <label> {{descripcion}}</label>
+          </div>
+          <div class="form-group">
+            <label for="precio">Precio</label>
+            <br>
+            <label> {{precio}}</label>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline-success" (click)="deleteProduct()">
+        Eliminar
+      </button>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,26 @@
+<ng-template #edit let-modal>
+    <div class="modal-content">
+      <div class="modal-header bg-indigo">
+        <h2 class="modal-title" id="apartadoTexto">Actualizar producto</h2>
+        <button type="button" class="close" (click)="modal.dismiss()" tool="tip" data-placement="top" title="Cancelar">
+          Cancelar
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col-sm-5 col-md-5 col-xl-5">
+          <form>
+            <input type="text" class="form-control" />
+            <input type="hidden"  />
+          </form>
+        </div>
+  
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-success" tool="tip">
+         Guardar
+        </button>
+      </div>
+    </div>
+  </ng-template>
+  
+  
